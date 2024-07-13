@@ -1,0 +1,6 @@
+*.scss
+dist
+public/*
+*.config.js
+node_modules
+build

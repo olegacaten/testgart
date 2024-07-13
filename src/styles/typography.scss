@@ -1,0 +1,55 @@
+
+// Font Families
+$font-family-inter: 'Inter', sans-serif;
+
+// Title Styles
+.title-semibold-30pt {
+  font-family: $font-family-inter;
+  font-weight: 533;
+  font-size: 30px;
+  line-height: 32px;
+}
+
+.title-semibold-20pt {
+  font-family: $font-family-inter;
+  font-weight: 600; 
+  font-size: 20px;
+  line-height: 26px;
+}
+
+// Body Styles
+.body-semibold-14pt {
+  font-family: $font-family-inter;
+  font-weight: 548; // Semi Bold
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.body-medium-14pt {
+  font-family: $font-family-inter;
+  font-weight: 500; // Medium
+  font-size: 14px;
+  line-height: 20px;
+}
+
+// Footnote Styles
+.footnote-semibold-12pt {
+  font-family: $font-family-inter;
+  font-weight: 600; // Semi Bold
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.footnote-regular-12pt {
+  font-family: $font-family-inter;
+  font-weight: 400; // Regular
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.footnote-medium-10pt {
+  font-family: $font-family-inter;
+  font-weight: 500; // Medium
+  font-size: 10px;
+  line-height: 14px;
+}

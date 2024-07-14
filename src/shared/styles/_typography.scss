@@ -4,7 +4,7 @@ $font-family-inter: 'Inter', sans-serif;
 // Title Styles
 .title-semibold-30pt {
   font-family: $font-family-inter;
-  font-weight: 533;
+  font-weight: 600;
   font-size: 30px;
   line-height: 32px;
 }
@@ -19,14 +19,14 @@ $font-family-inter: 'Inter', sans-serif;
 // Body Styles
 .body-semibold-14pt {
   font-family: $font-family-inter;
-  font-weight: 548; // Semi Bold
+  font-weight: 600;
   font-size: 14px;
   line-height: 20px;
 }
 
 .body-medium-14pt {
   font-family: $font-family-inter;
-  font-weight: 500; // Medium
+  font-weight: 500;
   font-size: 14px;
   line-height: 20px;
 }
@@ -34,21 +34,21 @@ $font-family-inter: 'Inter', sans-serif;
 // Footnote Styles
 .footnote-semibold-12pt {
   font-family: $font-family-inter;
-  font-weight: 600; // Semi Bold
+  font-weight: 600;
   font-size: 12px;
   line-height: 18px;
 }
 
 .footnote-regular-12pt {
   font-family: $font-family-inter;
-  font-weight: 400; // Regular
+  font-weight: 400;
   font-size: 12px;
   line-height: 18px;
 }
 
 .footnote-medium-10pt {
   font-family: $font-family-inter;
-  font-weight: 500; // Medium
+  font-weight: 500;
   font-size: 10px;
   line-height: 14px;
 }

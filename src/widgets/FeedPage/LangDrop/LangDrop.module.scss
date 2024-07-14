@@ -1,0 +1,133 @@
+@import '../../../shared/styles/main.scss';
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 69px;
+  margin-right: 24px;
+  @extend .body-semibold-14pt;
+
+  &.mobile {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 10px;
+
+  &.mobile {
+    width: 100%;
+    justify-content: space-between;
+    padding: 16px 8px;
+  }
+}
+
+.iconContent {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.languageIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.languageText {
+  @extend .body-semibold-14pt;
+}
+
+.arrow {
+  margin-left: 9px;
+  object-fit: contain;
+}
+
+.arrow img {
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.open {
+  transform: rotate(180deg);
+}
+
+.menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100px;
+  gap: 0px;
+  border-radius: 10px;
+  background-color: $gray-00;
+  box-shadow: -11px 11px 22.5px 0px #0c0c1814;
+  z-index: 1;
+  padding: 0;
+
+  &.mobile {
+    gap: 4px;
+    width: 100%;
+    box-shadow: none;
+    border-radius: 9px;
+  }
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-bottom: 0;
+  border-radius: 0;
+
+  &.mobile {
+    padding: 12px 8px;
+    border-radius: 10px;
+  }
+
+  &.mobile:first-child,
+  &.selected:first-child,
+  &:hover:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  &.mobile:last-child,
+  &.selected:last-child,
+  &:hover:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  &.mobile:not(:first-child):not(:last-child) {
+    border-radius: 10px;
+  }
+
+  &:not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
+
+  &.selected {
+    background-color: $gray-20;
+  }
+
+  &:hover {
+    background-color: $gray-10;
+  }
+}
+
+.menuItemIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}

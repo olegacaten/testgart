@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
-import ArrowDown from '../../../shared/assets/images/Lang/ArrowDown.svg';
-import RU from '../../../shared/assets/images/Lang/RU.svg';
-import FR from '../../../shared/assets/images/Lang/FR.svg';
-import UK from '../../../shared/assets/images/Lang/UK.svg';
+import React, { useState, useEffect, useRef } from 'react';
+import ArrowDown from '../../../../shared/assets/images/Lang/ArrowDown.svg';
+import RU from '../../../../shared/assets/images/Lang/RU.svg';
+import FR from '../../../../shared/assets/images/Lang/FR.svg';
+import UK from '../../../../shared/assets/images/Lang/UK.svg';
 import styles from './LangDrop.module.scss';
 
 interface LangItem {

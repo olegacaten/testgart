@@ -1,10 +1,11 @@
+import React from 'react';
 import { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { useMediaQuery, useTheme } from '@mui/material';
 import { MenuItems } from './menuitems';
 
-import NavigationButton from '../NavigationButton/NavigationButton';
-import LangDrop from '../LangDrop/LangDrop';
+import NavigationButton from '../TopBar/NavigationButton/NavigationButton';
+import LangDrop from '../TopBar/LangDrop/LangDrop';
 import ArrowDown from '../../../shared/assets/images/Lang/ArrowDown.svg';
 import styles from './TopBar.module.scss';
 import logo from '../../../shared/assets/images/logo.svg';
@@ -15,6 +16,7 @@ import Button from '../../shared/Button/Button';
 import Notification from '../../../shared/assets/images/notification_ico.svg';
 
 import profilepic from '../../../shared/assets/images/profilepic_1.png';
+
 const name: string = 'Михаил Зубов';
 
 const TopBar: React.FC = () => {

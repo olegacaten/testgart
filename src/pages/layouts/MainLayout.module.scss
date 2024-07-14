@@ -6,8 +6,10 @@
 }
 
 .Container__layout {
+  padding-top: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 1160px;
+  gap: 24px;
 }

@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import style from './MainLayout.module.scss';
+import React from 'react';
 
 const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (

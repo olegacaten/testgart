@@ -4,3 +4,4 @@ public/*
 *.config.js
 node_modules
 build
+eslintrc

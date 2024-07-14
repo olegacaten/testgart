@@ -1,0 +1,9 @@
+@import 'colors';
+@import 'typography';
+
+body {
+  background-color: $gray-20;
+  margin: 0;
+  padding: 0;
+  font-family: $font-family-inter;
+}

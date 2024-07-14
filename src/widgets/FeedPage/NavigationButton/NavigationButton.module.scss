@@ -1,0 +1,75 @@
+@import '../../../shared/styles/main.scss';
+
+.buttoncontainer {
+  display: flex;
+  align-items: center;
+
+  &.mobile {
+    width: 100%;
+  }
+}
+
+.iconbutton {
+  @extend .body-semibold-14pt;
+  display: flex;
+  align-items: center;
+  padding: 8px 8px;
+  color: $gray-40;
+  cursor: pointer;
+  text-transform: none;
+  text-decoration: none;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+  border-radius: 10px;
+
+  &.mobile {
+    width: 100%;
+    padding: 16px 8px;
+    justify-content: flex-start;
+  }
+
+  &:hover {
+    background-color: transparent;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: $gray-70;
+    border-radius: 10px;
+
+    .icon {
+      color: $gray-70;
+      filter: brightness(0.3);
+    }
+  }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 10px;
+  width: 20px;
+  height: 20px;
+  transition:
+    filter 0.3s,
+    color 0.3s;
+
+  img {
+    object-fit: contain;
+  }
+}
+
+.active {
+  color: $gray-70;
+
+  .icon {
+    color: $gray-70;
+    filter: brightness(0.3);
+  }
+}

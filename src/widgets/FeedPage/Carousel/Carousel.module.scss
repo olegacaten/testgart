@@ -1,53 +1,200 @@
+@import '../../../shared/styles/main.scss';
+
 .carouselContainer {
+  width: 100%;
+
+  .carouselImageContainer {
     position: relative;
     width: 100%;
     height: 320px;
-    overflow: hidden;
     margin-bottom: 12px;
+    border-radius: 10px;
+    background: $blue-gradient;
+    overflow: hidden;
+
+    &.mobile {
+      height: 280px;
+    }
+
+    .carouselImage {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .sportecText {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 110%;
+      text-align: center;
+      color: #fff;
+      z-index: 2;
+
+      &.mobile {
+        width: 100%;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+
+    .leftImage,
+    .rightImage {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-49%);
+      z-index: 3;
+      height: 102%;
+    }
+
+    .leftImage {
+      left: 0;
+    }
+
+    .rightImage {
+      right: 0;
+    }
+
+    .crossButton {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 3;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .centerButtonContainer {
+      position: absolute;
+      bottom: 35px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+    }
+
+    .eventInfoContainer {
+      position: absolute;
+      top: 35px;
+      left: 50%;
+      transform: translate(-50%, 0);
+      z-index: 3;
+      text-align: center;
+      width: 510px;
+      color: $gray-00;
+
+      &.mobile {
+        width: 311px;
+      }
+
+      .eventHeader {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 12px;
+
+        .eventHeaderCenter {
+          display: flex;
+          align-items: center;
+          flex-direction: row;
+          justify-content: space-between;
+          border-radius: 11px;
+          background-color: #FF2410;
+          font-weight: 700;
+          font-size: 16px;
+          padding: 8px 12px;
+
+          &.mobile {
+            font-size: 12px;
+          }
+
+          .eventHeaderCenterImage {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 20px;
+            width: 20px;
+            margin-right: 8px;
+            color: $gray-00;
+
+            &.mobile {
+              height: 14.65px;
+              width: 14.65px;
+            }
+          }
+        }
+      }
+
+      .matchInfo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 12px;
+        @extend .title-semibold-20pt;
+
+        .team {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          height: 26px;
+
+          img {
+            height: 100%;
+            object-fit: cover;
+          }
+          &.mobile{
+            font-size: 14px;
+            height: 20px;
+            
+          }
+        }
+
+        .vs {
+          color: $gray-40;
+          margin: 0 16px;
+        }
+      }
+
+      .eventTitle {
+        font-size: 40px;
+        font-weight: 600;
+        text-align: center;
+        &.mobile{
+          font-size: 30px;
+          
+        }
+      }
+    }
   }
-  
-  .carouselImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-  
-  .crossButton {
-    position: absolute;
-    top: 17px;
-    right: 17px; 
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    z-index: 10;
-  }
-  
-  .centerButtonContainer {
-    position: absolute;
-    bottom: 35px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-  }
-  
+
   .paginationContainer {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
+    margin-top: 16px;
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 8px;
+
+    .paginationDot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: $gray-30;
+
+      &.active {
+        background-color: $gray-60;
+      }
+    }
   }
-  
-  .paginationDot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.3);
-  }
-  
-  .activeDot {
-    background-color: rgba(0, 0, 0, 0.6);
-  }
-  
+}

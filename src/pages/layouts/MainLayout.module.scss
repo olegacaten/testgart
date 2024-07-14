@@ -9,7 +9,12 @@
   padding-top: 24px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   width: 1160px;
   gap: 24px;
+
+  &.mobile {
+    width: 100%;
+    padding: 20px 16px;
+  }
 }

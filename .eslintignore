@@ -4,4 +4,5 @@ public/*
 *.config.js
 node_modules
 build
-eslintrc
+*.eslintrc
+.eslintrc.cjs

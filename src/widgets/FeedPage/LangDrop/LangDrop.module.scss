@@ -63,7 +63,7 @@
 
 .menu {
   position: absolute;
-  top: 100%;
+  top: 48px;
   left: 0;
   width: 100px;
   gap: 0px;
@@ -72,8 +72,10 @@
   box-shadow: -11px 11px 22.5px 0px #0c0c1814;
   z-index: 1;
   padding: 0;
+  margin-top: 30px;
 
   &.mobile {
+    top: 100%;
     gap: 4px;
     width: 100%;
     box-shadow: none;

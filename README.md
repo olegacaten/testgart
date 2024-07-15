@@ -1,4 +1,4 @@
-1. Task: Make Feed Page
+1. Task: Make Feed Page https://www.figma.com/design/TQvv8bnukcp9XG7MNr37aG/Sportrec-UI-Design?node-id=4701-205268&t=RznToxJdEJaPwjDA-0
 2. Screenshot:
 3. Deployment:
 4. Done .07.2024 / deadline 16.07.2024

@@ -3,7 +3,7 @@ import Carousel from '../../widgets/FeedPage/Carousel/Carousel';
 import styles from './FeedPage.module.scss';
 import { useMediaQuery, useTheme } from '@mui/material';
 import PostFilter from '../../widgets/FeedPage/PostFilter/PostFilter';
-
+import AdContainer from '../../widgets/FeedPage/AdContainer/AdContainer';
 const text: string[] = ['', '', '', '', ''];
 
 export function FeedPage() {
@@ -53,7 +53,7 @@ export function FeedPage() {
           </div>
           <div className={styles.rightSide}>
             <PostFilter isMobile={isMobile} />
-            <div className={styles.item}>Settings 2</div>
+            <AdContainer isMobile={isMobile}/>
             <div className={styles.item}>Settings 3</div>
             <div className={styles.item}>Settings 4</div>
             {isCarouselVisible && <div className={styles.item}>Carousel</div>}
@@ -69,7 +69,7 @@ export function FeedPage() {
           )}
 
           <div className={styles.item}>Post</div>
-          <div className={styles.item}>Settings</div>
+          <AdContainer isMobile={isMobile}/>
           <div className={styles.item}>Settings</div>
           <div className={styles.item}>Settings</div>
           <div className={styles.item}>Post</div>

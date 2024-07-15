@@ -6,3 +6,4 @@ node_modules
 build
 *.eslintrc
 .eslintrc.cjs
+vite-env.d.ts

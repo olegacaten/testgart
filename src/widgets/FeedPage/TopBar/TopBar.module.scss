@@ -7,6 +7,14 @@
   height: 64px;
   width: 100%;
   background-color: $gray-00;
+
+  &.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
 }
 
 .innerContainer {
@@ -33,10 +41,11 @@
 .MenuItems {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 743px;
   height: 36px;
-  gap: 16px;
   margin-right: 124.62px;
+  transition: none;
 
   &.logedin {
     margin-right: 48.62px;
@@ -167,8 +176,5 @@
   @extend .body-semibold-14pt;
   span {
     padding: 8px 10px;
-  }
-
-  img {
   }
 }

@@ -21,8 +21,8 @@ const Button: React.FC<ButtonProps> = ({
   const buttonClass = `${styles.button} ${styles[color]} ${loading ? styles.loading : ''} ${disabled ? styles.disabled : ''}`;
 
   return (
-    <button 
-      className={buttonClass } 
+    <button
+      className={buttonClass}
       onClick={disabled || loading ? undefined : onClick}
       disabled={disabled || loading}
     >

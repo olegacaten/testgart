@@ -26,6 +26,9 @@ module.exports = {
     'react/prop-types': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
+    "no-warning-comments": [1, { "terms": ["todo", "fixme", "xxx"], "location": "anywhere" }],
+        "spaced-comment": ["error", "always", { "exceptions": ["-", "+"] }]
+
   },
   settings: {
     react: {

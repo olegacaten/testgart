@@ -111,7 +111,7 @@
           flex-direction: row;
           justify-content: space-between;
           border-radius: 11px;
-          background-color: #FF2410;
+          background-color: #ff2410;
           font-weight: 700;
           font-size: 16px;
           padding: 8px 12px;
@@ -154,10 +154,9 @@
             height: 100%;
             object-fit: cover;
           }
-          &.mobile{
+          &.mobile {
             font-size: 14px;
             height: 20px;
-            
           }
         }
 
@@ -171,9 +170,8 @@
         font-size: 40px;
         font-weight: 600;
         text-align: center;
-        &.mobile{
+        &.mobile {
           font-size: 30px;
-          
         }
       }
     }

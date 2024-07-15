@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { useMediaQuery, useTheme } from '@mui/material';
@@ -29,8 +29,24 @@ const TopBar: React.FC = () => {
 
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(getInitialLoginState);
+  const [isFixed, setIsFixed] = useState<boolean>(false);
+
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (ref.current) {
+        const offsetTop = ref.current.offsetTop;
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        setIsFixed(scrollTop > offsetTop);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const loggedInStatus = localStorage.getItem('isLoggedIn');
@@ -64,7 +80,7 @@ const TopBar: React.FC = () => {
     ));
 
   return (
-    <div className={styles.container}>
+    <div ref={ref} className={`${styles.container} ${isFixed ? styles.fixed : ''}`}>
       <div className={styles.innerContainer}>
         {isMobile && <div className={styles.spacer}></div>}
 

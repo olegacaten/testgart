@@ -28,14 +28,13 @@
     left: 0;
     overflow: hidden;
     &Pic {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        flex-direction: row;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-direction: row;
       height: 32px;
-      
 
-      &Container{
+      &Container {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -43,24 +42,22 @@
         width: 32px;
         height: 32px;
       }
-      img{
+      img {
         object-fit: scale-down;
       }
     }
 
     &PicType {
-        background-color: $gray-10;
-        color: $gray-70;
-        padding: 3px 8px;
-    
+      background-color: $gray-10;
+      color: $gray-70;
+      padding: 3px 8px;
     }
 
     &PicPlaceDate {
-        
-        text-wrap: nowrap;
-        padding: 3px 8px;
-        background-color: $gray-40;
-        color: $gray-00;
+      text-wrap: nowrap;
+      padding: 3px 8px;
+      background-color: $gray-40;
+      color: $gray-00;
       span {
         opacity: 0.5;
       }

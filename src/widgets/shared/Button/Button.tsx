@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from './Button.module.scss';
 
 interface ButtonProps {
@@ -27,6 +28,7 @@ const Button: React.FC<ButtonProps> = ({
     >
       {loading && <div className={styles.spinner}></div>}
       {icon && <span className={styles.icon}>{icon}</span>}
+
       {text && <span className={styles.text}>{text}</span>}
     </button>
   );

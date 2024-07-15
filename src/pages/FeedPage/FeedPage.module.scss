@@ -1,0 +1,47 @@
+.feedPage {
+  display: flex;
+  flex-direction: column;
+}
+
+.containerWrapper {
+  margin-top: 24px;
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  &.mobile {
+    margin-top: 0;
+  }
+}
+
+.desktop {
+  .leftSide {
+    flex: 0 0 765px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .rightSide {
+    flex: 0 0 371px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+.mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  .item {
+    width: 100%; /* Ensures full-width items */
+  }
+}
+
+.item {
+  padding: 16px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  box-sizing: border-box; /* Ensures padding and border are included in the width */
+}

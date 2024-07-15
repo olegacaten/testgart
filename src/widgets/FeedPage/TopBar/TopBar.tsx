@@ -1,10 +1,11 @@
+import React, { useRef } from 'react';
 import { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { useMediaQuery, useTheme } from '@mui/material';
 import { MenuItems } from './menuitems';
 
-import NavigationButton from '../NavigationButton/NavigationButton';
-import LangDrop from '../LangDrop/LangDrop';
+import NavigationButton from '../TopBar/NavigationButton/NavigationButton';
+import LangDrop from '../TopBar/LangDrop/LangDrop';
 import ArrowDown from '../../../shared/assets/images/Lang/ArrowDown.svg';
 import styles from './TopBar.module.scss';
 import logo from '../../../shared/assets/images/logo.svg';
@@ -15,6 +16,7 @@ import Button from '../../shared/Button/Button';
 import Notification from '../../../shared/assets/images/notification_ico.svg';
 
 import profilepic from '../../../shared/assets/images/profilepic_1.png';
+
 const name: string = 'Михаил Зубов';
 
 const TopBar: React.FC = () => {
@@ -27,8 +29,24 @@ const TopBar: React.FC = () => {
 
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(getInitialLoginState);
+  const [isFixed, setIsFixed] = useState<boolean>(false);
+
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (ref.current) {
+        const offsetTop = ref.current.offsetTop;
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        setIsFixed(scrollTop > offsetTop);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const loggedInStatus = localStorage.getItem('isLoggedIn');
@@ -62,7 +80,7 @@ const TopBar: React.FC = () => {
     ));
 
   return (
-    <div className={styles.container}>
+    <div ref={ref} className={`${styles.container} ${isFixed ? styles.fixed : ''}`}>
       <div className={styles.innerContainer}>
         {isMobile && <div className={styles.spacer}></div>}
 

@@ -1,9 +1,11 @@
+import React from 'react';
+
 import { lazy } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import MainLayout from '../pages/layouts/MainLayout';
 import TopBar from '../widgets/FeedPage/TopBar/TopBar';
 
-const FeedPage = lazy(() => import('../pages/FeedPage'));
+const FeedPage = lazy(() => import('../pages/FeedPage/FeedPage'));
 
 const App = () => {
   return (

@@ -6,12 +6,12 @@
   justify-content: center;
   border: none;
   padding: 10px 24px;
-  font-size: 16px;
   cursor: pointer;
   border-radius: 10px;
   outline: none;
   transition: background-color 0.3s;
   @extend .body-semibold-14pt;
+  text-wrap: nowrap;
 
   .icon {
     margin-right: 8px;
@@ -40,6 +40,10 @@
 
   &.loading {
     background-color: $gray-70;
+    .icon,
+    .text {
+      opacity: 0;
+    }
   }
 
   &.disabled {
@@ -62,6 +66,10 @@
 
   &.loading {
     background-color: $gray-20;
+    .icon,
+    .text {
+      opacity: 0;
+    }
   }
 
   &.disabled {

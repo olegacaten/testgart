@@ -1,13 +1,13 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-
   parserOptions: {
     ecmaVersion: 2020,
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
     },
-    project: ['./tsconfig.json'],
+    project: ['./tsconfig.json'], 
+    tsconfigRootDir: __dirname,
   },
   extends: [
     'eslint:recommended',
@@ -17,7 +17,6 @@ module.exports = {
     'prettier',
   ],
   plugins: ['@typescript-eslint', 'react', 'react-hooks', 'prettier'],
-
   rules: {
     'prettier/prettier': 'warn',
     'react/react-in-jsx-scope': 'off',
@@ -27,18 +26,21 @@ module.exports = {
     'react/prop-types': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
+    "no-warning-comments": [1, { "terms": ["todo", "fixme", "xxx"], "location": "anywhere" }],
+        "spaced-comment": ["error", "always", { "exceptions": ["-", "+"] }]
+
   },
   settings: {
     react: {
       version: 'detect',
     },
   },
-  ignorePatterns: ['*.js', 'node_modules/'],
+  ignorePatterns: ['*.js', 'node_modules/', '.eslintrc.cjs'], 
   overrides: [
     {
-      files: ['*.ts', '*.tsx'],
+      files: ['*.ts', '*.tsx', 'vite.config.ts'], 
       parserOptions: {
-        project: ['./tsconfig.json'],
+        project: ['./tsconfig.json'], 
       },
     },
   ],

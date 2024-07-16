@@ -127,10 +127,20 @@
         display: flex;
         gap: 12px;
       }
-
+      
+      &__right_top{
+          display: flex;
+          align-items: center;
+          gap:3px;
+      }
       &__name {
         @extend .body-medium-14pt;
         color: $gray-50;
+      }
+
+      &__verification{
+        width: 16px;
+        height: 16px;
       }
 
       &__text {
@@ -147,6 +157,7 @@
           &.post__commentsSection__comment__replyText {
             color: $gray-60;
             margin-left: 6px;
+            cursor: pointer;
           }
         }
       }
@@ -154,7 +165,6 @@
       &__reply {
         margin-top: 16px;
         margin-left: 32px;
-        display: flex;
       }
     }
   }

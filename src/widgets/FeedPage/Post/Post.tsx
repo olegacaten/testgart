@@ -7,7 +7,6 @@ import { useMediaQuery, useTheme } from '@mui/material';
 import Button from '../../shared/Button/Button';
 import verificationicon from '../../../shared/assets/icons/verification_icon.svg';
 
-
 interface Comment {
   profilepic: string;
   name: string;
@@ -129,14 +128,14 @@ const Post: React.FC<PostProps> = ({
                       <img src={reply.profilepic} alt="" />
                     </div>
                     <div className={styles.post__commentsSection__comment__right}>
-                    <div className={styles.post__commentsSection__comment__right_top}>
-                  <span className={styles.post__commentsSection__comment__name}>
-                    {reply.name}
-                  </span>
-                  <div className={styles.post__commentsSection__comment__verification}>
-                    {reply.verification ? <img src={verificationicon} /> : ''}
-                  </div>
-                </div>
+                      <div className={styles.post__commentsSection__comment__right_top}>
+                        <span className={styles.post__commentsSection__comment__name}>
+                          {reply.name}
+                        </span>
+                        <div className={styles.post__commentsSection__comment__verification}>
+                          {reply.verification ? <img src={verificationicon} /> : ''}
+                        </div>
+                      </div>
                       <p className={styles.post__commentsSection__comment__text}>{reply.text}</p>
                       <div className={styles.post__commentsSection__comment__date}>
                         {reply.date}
@@ -148,10 +147,9 @@ const Post: React.FC<PostProps> = ({
                   </div>
                 </div>
               ))}
-         {index < visibleComments.length - 1 && (
+            {index < visibleComments.length - 1 && (
               <div className={styles.post__commentsSection__line}></div>
             )}
-
           </div>
         ))}
       </div>

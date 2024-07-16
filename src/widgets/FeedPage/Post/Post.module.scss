@@ -127,18 +127,18 @@
         display: flex;
         gap: 12px;
       }
-      
-      &__right_top{
-          display: flex;
-          align-items: center;
-          gap:3px;
+
+      &__right_top {
+        display: flex;
+        align-items: center;
+        gap: 3px;
       }
       &__name {
         @extend .body-medium-14pt;
         color: $gray-50;
       }
 
-      &__verification{
+      &__verification {
         width: 16px;
         height: 16px;
       }

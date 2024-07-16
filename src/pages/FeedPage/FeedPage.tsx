@@ -39,7 +39,7 @@ const posts = [
             verification: true,
             text: `Вадим, согласен! Уже давно ждал интервью!`,
             date: '30 секунд назад',
-          }
+          },
         ],
       },
       {
@@ -98,10 +98,10 @@ const posts = [
         text: 'Похоже на шутку. В его возвращении нет ничего плохого, но лучше бои местного маштаба, уверен соперники найдутся, Кудряшов например или Романов, на крайняк Тищенко.',
         date: '30 секунд назад',
       },
-     
     ],
   },
-  { PostType: 'Result',
+  {
+    PostType: 'Result',
     UserName: 'Велоспорт',
     nameDate: '2 февраля, 2024 в 23:09',
     title: 'Этапы Тура Альп-2024',
@@ -137,7 +137,7 @@ export function FeedPage() {
     setFilter(selectedFilter);
     return `Filter set to: ${selectedFilter}`;
   };
-  const filteredPosts = posts.filter(post => {
+  const filteredPosts = posts.filter((post) => {
     if (filter === 'Все') return true;
     if (filter === 'Результаты соревнований') return post.PostType === 'Result';
     if (filter === 'Видео') return post.PostType === 'Videos';
@@ -164,18 +164,19 @@ export function FeedPage() {
             {filteredPosts.map((post, index) => (
               <Post
                 key={index}
-                PostType={post.UserName}  
+                PostType={post.UserName}
                 UserName={post.UserName}
                 nameDate={post.nameDate}
                 title={post.title}
                 text={post.text}
                 images={post.images}
                 views={post.views}
-                comments={post.comments}             />
+                comments={post.comments}
+              />
             ))}
           </div>
           <div className={styles.rightSide}>
-            <PostFilter isMobile={isMobile} onFilterChange={handleFilterChange}/>
+            <PostFilter isMobile={isMobile} onFilterChange={handleFilterChange} />
             <AdContainer isMobile={isMobile} />
             <div className={styles.item}>Settings 3</div>
             <div className={styles.item}>Settings 4</div>
@@ -185,7 +186,7 @@ export function FeedPage() {
 
       {isMobile && (
         <div className={`${styles.containerWrapper} ${styles.mobile}`}>
-          <PostFilter isMobile={isMobile} onFilterChange={handleFilterChange}/>
+          <PostFilter isMobile={isMobile} onFilterChange={handleFilterChange} />
           {isCarouselVisible && isMobile && (
             <Carousel
               isMobile={isMobile}
@@ -194,18 +195,18 @@ export function FeedPage() {
             />
           )}
 
-          {posts.map((post, index) => (
-             <Post
-             key={index}
-             PostType={post.UserName}  
-             UserName={post.UserName}
-             nameDate={post.nameDate}
-             title={post.title}
-             text={post.text}
-             images={post.images}
-             views={post.views}
-             comments={post.comments}             />
-      
+          {filteredPosts.map((post, index) => (
+            <Post
+              key={index}
+              PostType={post.UserName}
+              UserName={post.UserName}
+              nameDate={post.nameDate}
+              title={post.title}
+              text={post.text}
+              images={post.images}
+              views={post.views}
+              comments={post.comments}
+            />
           ))}
           <AdContainer isMobile={isMobile} />
           <div className={styles.item}>Settings</div>

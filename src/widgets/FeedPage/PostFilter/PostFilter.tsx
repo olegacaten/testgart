@@ -12,7 +12,7 @@ interface PostFilterProps {
   onFilterChange: (filter: string) => string;
 }
 
-const PostFilter: React.FC<PostFilterProps> = ({ isMobile, onFilterChange  }) => {
+const PostFilter: React.FC<PostFilterProps> = ({ isMobile, onFilterChange }) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [isFixed, setIsFixed] = useState<boolean>(false);
@@ -80,7 +80,7 @@ const PostFilter: React.FC<PostFilterProps> = ({ isMobile, onFilterChange  }) =>
           <button
             key={index}
             className={`${styles.button} ${index === activeIndex ? styles.active : ''}`}
-            onClick={() => handleButtonClick(index,option.label)}
+            onClick={() => handleButtonClick(index, option.label)}
           >
             <div className={styles.icontextwrapper}>
               <img src={option.image} alt={option.label} className={styles.icon} />

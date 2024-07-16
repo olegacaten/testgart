@@ -17,6 +17,7 @@ import Image9 from './PostFakeData/9.png';
 import ProfilePic from '../../shared/assets/images/profilepic_1.png';
 const posts = [
   {
+    PostType: 'Videos',
     UserName: 'Спортивная Борьба',
     nameDate: '12 марта, 2024 в 16:03',
     title: 'Илья Бессонов дал интервью для телеканала Россия-1',
@@ -28,32 +29,79 @@ const posts = [
       {
         profilepic: ProfilePic,
         name: 'Вадим Давыдов',
+        verification: false,
         text: 'Наконец-то! Рад, что он вернулся в спорт👍',
         date: '15 минут назад',
         replies: [
           {
             profilepic: ProfilePic,
             name: 'Артем Еременко',
-            text: 'Вадим, согласен! Уже давно ждал интервью!',
+            verification: true,
+            text: `Вадим, согласен! Уже давно ждал интервью!`,
             date: '30 секунд назад',
-          },
-          {
-            profilepic: ProfilePic,
-            name: 'Вадим Давыдов',
-            text: 'Артем, Я хочу с тобой поговорить еще раз!',
-            date: '10 секунд назад',
-          },
+          }
         ],
       },
       {
         profilepic: ProfilePic,
         name: 'Константин Романов',
+        verification: false,
         text: 'Похоже на шутку. В его возвращении нет ничего плохого, но лучше бои местного маштаба, уверен соперники найдутся, Кудряшов например или Романов, на крайняк Тищенко.',
         date: '30 секунд назад',
       },
+      {
+        profilepic: ProfilePic,
+        name: 'Романов Молодец',
+        verification: true,
+        text: 'Похоже на шутку. В его возвращении нет ничего плохого, но лучше бои местного маштаба, уверен соперники найдутся, Кудряшов например или Романов, на крайняк Тищенко.',
+        date: '30 секунд назад',
+      },
+      {
+        profilepic: ProfilePic,
+        name: 'Вадим Давыдов',
+        verification: false,
+        text: 'Романов Молодец 👍!',
+        date: '20 минут назад',
+      },
+      {
+        profilepic: ProfilePic,
+        name: 'Константин Романов',
+        verification: true,
+        text: 'Похоже на шутку. В его возвращении нет ничего плохого, но лучше бои местного маштаба, уверен соперники найдутся, Кудряшов например или Романов, на крайняк Тищенко.',
+        date: '30 секунд назад',
+      },
+      {
+        profilepic: ProfilePic,
+        name: 'Романов Молодец',
+        verification: false,
+        text: 'Похоже на шутку. В его возвращении нет ничего плохого, но лучше бои местного маштаба, уверен соперники найдутся, Кудряшов например или Романов, на крайняк Тищенко.',
+        date: '30 секунд назад',
+      },
+      {
+        profilepic: ProfilePic,
+        name: 'Вадим Давыдов',
+        verification: false,
+        text: 'Романов Молодец 👍!',
+        date: '20 минут назад',
+      },
+      {
+        profilepic: ProfilePic,
+        name: 'Константин Романов',
+        verification: false,
+        text: 'Похоже на шутку. В его возвращении нет ничего плохого, но лучше бои местного маштаба, уверен соперники найдутся, Кудряшов например или Романов, на крайняк Тищенко.',
+        date: '30 секунд назад',
+      },
+      {
+        profilepic: ProfilePic,
+        name: 'Романов Молодец',
+        verification: true,
+        text: 'Похоже на шутку. В его возвращении нет ничего плохого, но лучше бои местного маштаба, уверен соперники найдутся, Кудряшов например или Романов, на крайняк Тищенко.',
+        date: '30 секунд назад',
+      },
+     
     ],
   },
-  {
+  { PostType: 'Result',
     UserName: 'Велоспорт',
     nameDate: '2 февраля, 2024 в 23:09',
     title: 'Этапы Тура Альп-2024',
@@ -66,6 +114,14 @@ const posts = [
       {
         profilepic: ProfilePic,
         name: 'Вадим Давыдов',
+        verification: false,
+        text: 'Романов Молодец 👍!',
+        date: '20 минут назад',
+      },
+      {
+        profilepic: ProfilePic,
+        name: 'Вадим Давыдов',
+        verification: true,
         text: 'Романов Молодец 👍!',
         date: '20 минут назад',
       },
@@ -75,6 +131,19 @@ const posts = [
 
 export function FeedPage() {
   const [isCarouselVisible, setCarouselVisible] = useState(true);
+  const [filter, setFilter] = useState<string>('Все');
+
+  const handleFilterChange = (selectedFilter: string): string => {
+    setFilter(selectedFilter);
+    return `Filter set to: ${selectedFilter}`;
+  };
+  const filteredPosts = posts.filter(post => {
+    if (filter === 'Все') return true;
+    if (filter === 'Результаты соревнований') return post.PostType === 'Result';
+    if (filter === 'Видео') return post.PostType === 'Videos';
+    if (filter === 'Достижения') return post.PostType === 'Achievements';
+    return false;
+  });
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
@@ -92,32 +161,31 @@ export function FeedPage() {
       {!isMobile && (
         <div className={`${styles.containerWrapper} ${styles.desktop}`}>
           <div className={styles.leftSide}>
-            {posts.map((post, index) => (
+            {filteredPosts.map((post, index) => (
               <Post
                 key={index}
+                PostType={post.UserName}  
                 UserName={post.UserName}
                 nameDate={post.nameDate}
                 title={post.title}
                 text={post.text}
                 images={post.images}
                 views={post.views}
-                comments={post.comments}
-              />
+                comments={post.comments}             />
             ))}
           </div>
           <div className={styles.rightSide}>
-            <PostFilter isMobile={isMobile} />
+            <PostFilter isMobile={isMobile} onFilterChange={handleFilterChange}/>
             <AdContainer isMobile={isMobile} />
             <div className={styles.item}>Settings 3</div>
             <div className={styles.item}>Settings 4</div>
-            {isCarouselVisible && <div className={styles.item}>Carousel</div>}
           </div>
         </div>
       )}
 
       {isMobile && (
         <div className={`${styles.containerWrapper} ${styles.mobile}`}>
-          <PostFilter isMobile={isMobile} />
+          <PostFilter isMobile={isMobile} onFilterChange={handleFilterChange}/>
           {isCarouselVisible && isMobile && (
             <Carousel
               isMobile={isMobile}
@@ -127,16 +195,17 @@ export function FeedPage() {
           )}
 
           {posts.map((post, index) => (
-            <Post
-              key={index}
-              UserName={post.UserName}
-              nameDate={post.nameDate}
-              title={post.title}
-              text={post.text}
-              images={post.images}
-              views={post.views}
-              comments={post.comments}
-            />
+             <Post
+             key={index}
+             PostType={post.UserName}  
+             UserName={post.UserName}
+             nameDate={post.nameDate}
+             title={post.title}
+             text={post.text}
+             images={post.images}
+             views={post.views}
+             comments={post.comments}             />
+      
           ))}
           <AdContainer isMobile={isMobile} />
           <div className={styles.item}>Settings</div>

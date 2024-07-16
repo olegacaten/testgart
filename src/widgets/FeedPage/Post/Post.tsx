@@ -1,23 +1,31 @@
+import { useState } from 'react';
 import styles from './Post.module.scss';
 import PostText from './PostText/PostText';
 import CommentAmountIcon from '../../../shared/assets/icons/Post/CommentAmountIcon.svg';
 import ViewsAMountIcon from '../../../shared/assets/icons/Post/ViewsAMountIcon.svg';
 import { useMediaQuery, useTheme } from '@mui/material';
 import Button from '../../shared/Button/Button';
+import verificationicon from '../../../shared/assets/icons/verification_icon.svg';
+
+
+interface Comment {
+  profilepic: string;
+  name: string;
+  verification: boolean;
+  text: string;
+  date: string;
+  replies?: Comment[];
+}
+
 interface PostProps {
+  PostType: string;
   UserName: string;
   nameDate: string;
   title: string;
   text: string;
   images: string[];
   views: number;
-  comments: {
-    profilepic: string;
-    name: string;
-    text: string;
-    date: string;
-    replies?: { profilepic: string; name: string; text: string; date: string }[];
-  }[];
+  comments: Comment[];
 }
 
 const Post: React.FC<PostProps> = ({
@@ -29,12 +37,19 @@ const Post: React.FC<PostProps> = ({
   views,
   comments,
 }) => {
+  const [visibleCommentsCount, setVisibleCommentsCount] = useState(3);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
   const totalCommentCount =
     comments?.reduce((acc, comment) => {
       return acc + 1 + (comment.replies?.length || 0);
     }, 0) || 0;
+
+  const handleLoadMore = () => {
+    setVisibleCommentsCount((prevCount: number) => prevCount + 3);
+  };
+
+  const visibleComments = comments.slice(0, visibleCommentsCount);
 
   return (
     <div className={styles.post}>
@@ -84,14 +99,21 @@ const Post: React.FC<PostProps> = ({
       <div className={styles.post__commentsSection}>
         <div className={styles.post__commentsSection__line}></div>
 
-        {comments.map((comment, index) => (
+        {visibleComments.map((comment, index) => (
           <div key={index} className={styles.post__commentsSection__comment}>
             <div className={styles.post__commentsSection__comment__header}>
               <div className={styles.post__profilepic}>
                 <img src={comment.profilepic} alt="" />
               </div>
               <div className={styles.post__commentsSection__comment__right}>
-                <span className={styles.post__commentsSection__comment__name}>{comment.name}</span>
+                <div className={styles.post__commentsSection__comment__right_top}>
+                  <span className={styles.post__commentsSection__comment__name}>
+                    {comment.name}
+                  </span>
+                  <div className={styles.post__commentsSection__comment__verification}>
+                    {comment.verification ? <img src={verificationicon} /> : ''}
+                  </div>
+                </div>
                 <p className={styles.post__commentsSection__comment__text}>{comment.text}</p>
                 <div className={styles.post__commentsSection__comment__date}>
                   {comment.date}
@@ -103,13 +125,18 @@ const Post: React.FC<PostProps> = ({
               comment.replies.map((reply, replyIndex) => (
                 <div key={replyIndex} className={styles.post__commentsSection__comment__reply}>
                   <div className={styles.post__commentsSection__comment__header}>
-                    <div className={styles.post__icon}>
+                    <div className={styles.post__profilepic}>
                       <img src={reply.profilepic} alt="" />
                     </div>
                     <div className={styles.post__commentsSection__comment__right}>
-                      <span className={styles.post__commentsSection__comment__name}>
-                        {reply.name}
-                      </span>
+                    <div className={styles.post__commentsSection__comment__right_top}>
+                  <span className={styles.post__commentsSection__comment__name}>
+                    {reply.name}
+                  </span>
+                  <div className={styles.post__commentsSection__comment__verification}>
+                    {reply.verification ? <img src={verificationicon} /> : ''}
+                  </div>
+                </div>
                       <p className={styles.post__commentsSection__comment__text}>{reply.text}</p>
                       <div className={styles.post__commentsSection__comment__date}>
                         {reply.date}
@@ -121,12 +148,17 @@ const Post: React.FC<PostProps> = ({
                   </div>
                 </div>
               ))}
-            <div className={styles.post__commentsSection__line}></div>
+         {index < visibleComments.length - 1 && (
+              <div className={styles.post__commentsSection__line}></div>
+            )}
+
           </div>
         ))}
       </div>
 
-      {comments.length > 3 && <Button color="light" text="Смотреть все комментарии" />}
+      {comments.length > visibleCommentsCount && (
+        <Button color="light" text="Смотреть все комментарии" onClick={handleLoadMore} />
+      )}
     </div>
   );
 };

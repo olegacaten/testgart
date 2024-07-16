@@ -24,7 +24,7 @@ const PostText: React.FC<PostTextProps> = ({ text, maxLength }) => {
       </span>
       {text.length > maxLength && (
         <button className={styles.postText__toggle} onClick={handleToggle}>
-          {isExpanded ? 'Свернуть' : 'Читать больше'}
+          {isExpanded ? '' : 'Читать больше'}
         </button>
       )}
     </div>

@@ -7,14 +7,21 @@ import iconResults from '../../../shared/assets/images/PostFilter/iconResults.sv
 import iconVideos from '../../../shared/assets/images/PostFilter/iconVideos.svg';
 import iconAchievements from '../../../shared/assets/images/PostFilter/iconAchievements.svg';
 
-const PostFilter: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
+interface PostFilterProps {
+  isMobile: boolean;
+  onFilterChange: (filter: string) => string;
+}
+
+const PostFilter: React.FC<PostFilterProps> = ({ isMobile, onFilterChange  }) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [isFixed, setIsFixed] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  const handleButtonClick = (index: number) => {
+  const handleButtonClick = (index: number, label: string) => {
     setActiveIndex(index);
+    const returnedString = onFilterChange(label);
+    console.log('Returned string from parent:', returnedString);
   };
 
   const toggleOptions = () => {
@@ -73,7 +80,7 @@ const PostFilter: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
           <button
             key={index}
             className={`${styles.button} ${index === activeIndex ? styles.active : ''}`}
-            onClick={() => handleButtonClick(index)}
+            onClick={() => handleButtonClick(index,option.label)}
           >
             <div className={styles.icontextwrapper}>
               <img src={option.image} alt={option.label} className={styles.icon} />

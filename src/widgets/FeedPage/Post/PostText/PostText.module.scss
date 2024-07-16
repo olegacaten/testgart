@@ -1,13 +1,15 @@
 @import '../../../../shared/styles/main.scss';
 
 .postText {
-    margin-bottom: 20px;
-    @extend .body-medium-14pt;
+  margin-bottom: 20px;
+  @extend .body-medium-14pt;
   position: relative;
-    color: $gray-50;
+  color: $gray-50;
   &__content {
     margin-bottom: 16px;
-    transition: max-height 0.3s ease, opacity 0.3s ease;
+    transition:
+      max-height 0.3s ease,
+      opacity 0.3s ease;
 
     &__collapsed {
       overflow: hidden;

@@ -32,47 +32,45 @@
     margin-bottom: 16px;
     min-height: 412px;
     max-height: 624px;
-    &.mobile{
-        min-height: 196px;
-        max-height: 300px;
+    &.mobile {
+      min-height: 196px;
+      max-height: 300px;
     }
 
-
     .post__imageWrapper {
-        flex: 1 1 auto;
-        overflow: hidden;
-        border-radius: 14px;
-        max-width: calc(100% / 3 - 8px); 
-  
+      flex: 1 1 auto;
+      overflow: hidden;
+      border-radius: 14px;
+      max-width: calc(100% / 3 - 8px);
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      &.blackened {
+        position: relative;
+
         img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-  
-        &.blackened {
-          position: relative;
-  
-          img {
-            filter: brightness(50%);
-          }
+          filter: brightness(50%);
         }
       }
+    }
   }
 
   &__imageWrapper {
     overflow: hidden;
     border-radius: 14px;
-   
+
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
   }
-  
+
   &__viewsComments {
-    
     display: flex;
     justify-content: flex-start;
     gap: 16px;
@@ -80,59 +78,86 @@
 
     &__views,
     &__comments {
-        color: $gray-50;
+      color: $gray-50;
       display: flex;
       align-items: center;
       gap: 4px;
       @extend .body-medium-14pt;
-      .post__icon{
+      .post__icon {
         width: 20px;
         height: 20px;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
       }
     }
   }
 
-  &__icon {
-    font-size: 16px;
+  & .post__profilepic {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    & img {
+      width: 40px;
+    }
+  }
+
+  &__commentHeader {
+    display: flex;
+    gap: 12px;
   }
 
   &__commentsSection {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 16px;
 
+    & .post__commentsSection__line {
+      height: 1px;
+      width: 100%;
+      margin-top: 16px;
+      background-color: $gray-20;
+    }
+
     &__comment {
-      margin-bottom: 16px;
+      margin-top: 16px;
 
       &__header {
         display: flex;
-        align-items: center;
-        gap: 4px;
-        margin-bottom: 4px;
+        gap: 12px;
       }
 
       &__name {
-        font-weight: bold;
+        @extend .body-medium-14pt;
+        color: $gray-50;
       }
 
       &__text {
-        margin-bottom: 4px;
+        @extend .body-medium-14pt;
+        color: $gray-70;
+        margin-top: 4px;
+        margin-bottom: 8px;
       }
 
       &__date {
-        font-size: 12px;
-        color: #777;
+        @extend .body-medium-14pt;
+        color: $gray-40;
+        span {
+          &.post__commentsSection__comment__replyText {
+            color: $gray-60;
+            margin-left: 6px;
+          }
+        }
       }
 
       &__reply {
-        margin-bottom: 16px;
+        margin-top: 16px;
         margin-left: 32px;
+        display: flex;
       }
-          
     }
   }
-
   &__seeAllComments {
     button {
       background-color: transparent;

@@ -17,7 +17,9 @@ const PostText: React.FC<PostTextProps> = ({ text, maxLength }) => {
 
   return (
     <div className={styles.postText}>
-      <span className={`${styles.postText__content} ${!isExpanded && text.length > maxLength ? styles.postText__content__collapsed : ''}`}>
+      <span
+        className={`${styles.postText__content} ${!isExpanded && text.length > maxLength ? styles.postText__content__collapsed : ''}`}
+      >
         {isExpanded ? text : truncatedText}
       </span>
       {text.length > maxLength && (

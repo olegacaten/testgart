@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './Post.module.scss';
 import PostText from './PostText/PostText';
 import CommentAmountIcon from '../../../shared/assets/icons/Post/CommentAmountIcon.svg';
@@ -12,12 +11,12 @@ interface PostProps {
   text: string;
   images: string[];
   views: number;
-  commentsCount: number;
   comments: {
+    profilepic: string;
     name: string;
     text: string;
     date: string;
-    replies?: { name: string; text: string; date: string }[];
+    replies?: { profilepic: string; name: string; text: string; date: string }[];
   }[];
 }
 
@@ -28,12 +27,14 @@ const Post: React.FC<PostProps> = ({
   text,
   images,
   views,
-  commentsCount,
   comments,
 }) => {
-
-const theme = useTheme();
+  const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
+  const totalCommentCount =
+    comments?.reduce((acc, comment) => {
+      return acc + 1 + (comment.replies?.length || 0);
+    }, 0) || 0;
 
   return (
     <div className={styles.post}>
@@ -47,14 +48,19 @@ const theme = useTheme();
       <PostText text={text} maxLength={185} />
       <div className={`${styles.post__imagesContainer} ${isMobile ? styles.mobile : ''}`}>
         {images.map((image, index) => (
-         <div
-         key={index}
-         className={`${styles.post__imageWrapper} ${isMobile ? styles.mobileImageWrapper : ''} ${index === 8 && images.length >= 9 ? styles.blackened : ''}`}
-         style={{
-           width: images.length >= 6 && images.length <= 9 ? (isMobile ? 'calc(100% / 3 - 8px)' : '235px') : 'auto',
-           height: isMobile ? '92px' : '200px',
-         }}
-       >
+          <div
+            key={index}
+            className={`${styles.post__imageWrapper} ${isMobile ? styles.mobileImageWrapper : ''} ${index === 8 && images.length >= 9 ? styles.blackened : ''}`}
+            style={{
+              width:
+                images.length >= 6 && images.length <= 9
+                  ? isMobile
+                    ? 'calc(100% / 3 - 8px)'
+                    : '235px'
+                  : 'auto',
+              height: isMobile ? '92px' : '200px',
+            }}
+          >
             <img src={image} alt={`image-${index}`} />
           </div>
         ))}
@@ -62,43 +68,65 @@ const theme = useTheme();
 
       <div className={styles.post__viewsComments}>
         <div className={styles.post__viewsComments__views}>
-          <span className={styles.post__icon}><img src={ViewsAMountIcon} alt="Views:" /></span>
+          <span className={styles.post__icon}>
+            <img src={ViewsAMountIcon} alt="Views:" />
+          </span>
           <span>{views}</span>
         </div>
         <div className={styles.post__viewsComments__comments}>
-          <span className={styles.post__icon}><img src={CommentAmountIcon} alt="Comment:" /></span>
-          <span>{commentsCount}</span>
+          <span className={styles.post__icon}>
+            <img src={CommentAmountIcon} alt="Comment:" />
+          </span>
+          <span>{totalCommentCount}</span>
         </div>
       </div>
 
       <div className={styles.post__commentsSection}>
-        {comments.map((comment, index) => (
-          <div key={index} className={styles.post__comment}>
-            <div className={styles.post__commentHeader}>
-              <span className={styles.post__icon}>👤</span>
-              <span className={styles.post__commentName}>{comment.name}</span>
-            </div>
-            <p className={styles.post__commentText}>{comment.text}</p>
-            <div className={styles.post__commentDate}>{comment.date}</div>
+        <div className={styles.post__commentsSection__line}></div>
 
+        {comments.map((comment, index) => (
+          <div key={index} className={styles.post__commentsSection__comment}>
+            <div className={styles.post__commentsSection__comment__header}>
+              <div className={styles.post__profilepic}>
+                <img src={comment.profilepic} alt="" />
+              </div>
+              <div className={styles.post__commentsSection__comment__right}>
+                <span className={styles.post__commentsSection__comment__name}>{comment.name}</span>
+                <p className={styles.post__commentsSection__comment__text}>{comment.text}</p>
+                <div className={styles.post__commentsSection__comment__date}>
+                  {comment.date}
+                  <span className={styles.post__commentsSection__comment__replyText}>Ответить</span>
+                </div>
+              </div>
+            </div>
             {comment.replies &&
               comment.replies.map((reply, replyIndex) => (
-                <div key={replyIndex} className={styles.post__reply} style={{ marginLeft: '32px' }}>
-                  <div className={styles.post__commentHeader}>
-                    <span className={styles.post__icon}>👤</span>
-                    <span className={styles.post__commentName}>{reply.name}</span>
+                <div key={replyIndex} className={styles.post__commentsSection__comment__reply}>
+                  <div className={styles.post__commentsSection__comment__header}>
+                    <div className={styles.post__icon}>
+                      <img src={reply.profilepic} alt="" />
+                    </div>
+                    <div className={styles.post__commentsSection__comment__right}>
+                      <span className={styles.post__commentsSection__comment__name}>
+                        {reply.name}
+                      </span>
+                      <p className={styles.post__commentsSection__comment__text}>{reply.text}</p>
+                      <div className={styles.post__commentsSection__comment__date}>
+                        {reply.date}
+                        <span className={styles.post__commentsSection__comment__replyText}>
+                          Ответить
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                  <p className={styles.post__commentText}>{reply.text}</p>
-                  <div className={styles.post__commentDate}>{reply.date}</div>
                 </div>
               ))}
+            <div className={styles.post__commentsSection__line}></div>
           </div>
         ))}
       </div>
 
-      <div className={styles.post__seeAllComments}>
-        <Button color='light' text="Смотреть все комментарии" />
-      </div>
+      {comments.length > 3 && <Button color="light" text="Смотреть все комментарии" />}
     </div>
   );
 };

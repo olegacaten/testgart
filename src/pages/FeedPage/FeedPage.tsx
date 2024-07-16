@@ -14,6 +14,7 @@ import Image6 from './PostFakeData/6.png';
 import Image7 from './PostFakeData/7.png';
 import Image8 from './PostFakeData/8.png';
 import Image9 from './PostFakeData/9.png';
+import ProfilePic from '../../shared/assets/images/profilepic_1.png';
 const posts = [
   {
     UserName: 'Спортивная Борьба',
@@ -25,21 +26,30 @@ const posts = [
     commentsCount: 45,
     comments: [
       {
+        profilepic: ProfilePic,
         name: 'Вадим Давыдов',
-        text: 'Наконец-то! Рад, что он вернулся в спорт',
-        date: '12 марта, 2024 в 16:03',
+        text: 'Наконец-то! Рад, что он вернулся в спорт👍',
+        date: '15 минут назад',
         replies: [
           {
-            name: 'Jane Smith',
-            text: ', согласен! Уже давно ждал интервью!',
-            date: '12 марта, 2024 в 16:10',
+            profilepic: ProfilePic,
+            name: 'Артем Еременко',
+            text: 'Вадим, согласен! Уже давно ждал интервью!',
+            date: '30 секунд назад',
+          },
+          {
+            profilepic: ProfilePic,
+            name: 'Вадим Давыдов',
+            text: 'Артем, Я хочу с тобой поговорить еще раз!',
+            date: '10 секунд назад',
           },
         ],
       },
       {
-        name: 'Alice Johnson',
-        text: 'Very informative.',
-        date: '12 марта, 2024 в 17:00',
+        profilepic: ProfilePic,
+        name: 'Константин Романов',
+        text: 'Похоже на шутку. В его возвращении нет ничего плохого, но лучше бои местного маштаба, уверен соперники найдутся, Кудряшов например или Романов, на крайняк Тищенко.',
+        date: '30 секунд назад',
       },
     ],
   },
@@ -54,14 +64,10 @@ const posts = [
     commentsCount: 100,
     comments: [
       {
-        name: 'Eve Adams',
-        text: 'Awesome match!',
-        date: '14 июля, 2024 в 12:05',
-      },
-      {
-        name: 'Michael Brown',
-        text: 'The game was intense!',
-        date: '14 июля, 2024 в 12:15',
+        profilepic: ProfilePic,
+        name: 'Вадим Давыдов',
+        text: 'Романов Молодец 👍!',
+        date: '20 минут назад',
       },
     ],
   },
@@ -95,7 +101,6 @@ export function FeedPage() {
                 text={post.text}
                 images={post.images}
                 views={post.views}
-                commentsCount={post.commentsCount}
                 comments={post.comments}
               />
             ))}
@@ -130,7 +135,6 @@ export function FeedPage() {
               text={post.text}
               images={post.images}
               views={post.views}
-              commentsCount={post.commentsCount}
               comments={post.comments}
             />
           ))}
